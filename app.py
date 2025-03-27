@@ -1,18 +1,12 @@
-import os
-from dotenv import load_dotenv
 import streamlit as st
 from supabase import create_client
 import pandas as pd
 
-# Load .env file
-load_dotenv()
-print("Debug: .env file loaded")  # Debugging log
-
-# Load credentials from environment variables
-SUPABASE_URL = os.getenv("SUPABASE_URL")
-SUPABASE_KEY = os.getenv("SUPABASE_KEY")
+# Load credentials from Streamlit secrets
+SUPABASE_URL = st.secrets["SUPABASE_URL"]
+SUPABASE_KEY = st.secrets["SUPABASE_KEY"]
 print(f"Debug: SUPABASE_URL - {SUPABASE_URL}")  # Debugging log
-print(f"Debug: SUPABASE_KEY - {SUPABASE_KEY}")  # Debugging log
+print(f"Debug: SUPABASE_KEY - {SUPABASE_KEY[:5]}...")  # Masked for security
 
 # Connect to Supabase
 try:
